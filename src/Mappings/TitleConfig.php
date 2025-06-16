@@ -1,6 +1,6 @@
 <?php
 
-namespace Misteryomi\NameParser\Mappings;
+namespace NameParser\Mappings;
 
 class TitleConfig
 {

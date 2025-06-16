@@ -1,6 +1,6 @@
 <?php
 
-namespace Misteryomi\NameParser\DTO;
+namespace NameParser\DTO;
 
 class Person 
 {

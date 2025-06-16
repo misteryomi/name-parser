@@ -3,7 +3,7 @@
     "description": "A simple parser that converts generic names to stuctured array format",
     "autoload": {
         "psr-4": {
-            "Misteryomi\\NameParser\\": "src/"
+            "NameParser\\": "src/"
         }
     },
     "authors": [
@@ -12,5 +12,7 @@
             "email": "yomiomotoso@gmail.com"
         }
     ],
-    "require": {}
+    "require-dev": {
+        "phpunit/phpunit": "^12"
+    }
 }

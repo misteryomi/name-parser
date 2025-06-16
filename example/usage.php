@@ -2,10 +2,10 @@
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use Misteryomi\NameParser\Parser\NameParser;
+use NameParser\NameParser;
 
 
-$customTitlesConfig = \Misteryomi\NameParser\Mappings\TitleConfig::custom(
+$customTitlesConfig = \NameParser\Mappings\TitleConfig::custom(
     ['sir'],
     [
         'sir' => 'Sir',
