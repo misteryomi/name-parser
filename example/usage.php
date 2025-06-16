@@ -4,7 +4,16 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 use Misteryomi\NameParser\Parser\NameParser;
 
-$parser = new NameParser();
+
+$customTitlesConfig = \Misteryomi\NameParser\Mappings\TitleConfig::custom(
+    ['sir'],
+    [
+        'sir' => 'Sir',
+    ]
+);
+
+$parser = new NameParser($customTitlesConfig);
+
 
 $exampleNames = [
     'Dr. John Smith',
