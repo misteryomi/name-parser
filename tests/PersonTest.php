@@ -63,10 +63,10 @@ class PersonTest extends TestCase
     
     public function testHandlesMultiWordLastNames()
     {
-        $person = new Person('Mr', 'John', null, 'Van Der Berg');
+        $person = new Person('Mrs', 'Faye', null, 'Hughes-Eastwood');
         
-        $this->assertEquals('Van Der Berg', $person->last_name);
-        $this->assertEquals('Van Der Berg', $person->toArray()['last_name']);
+        $this->assertEquals('Hughes-Eastwood', $person->last_name);
+        $this->assertEquals('Hughes-Eastwood', $person->toArray()['last_name']);
     }
     
     public function testHandlesSingleCharacterInitials()

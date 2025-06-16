@@ -15,7 +15,6 @@ class NameParser
         $this->titleConfig = $titleConfig ?? new TitleConfig();
     }
 
-
     public function parseFromCSV(string $filePath, bool $hasHeader = true): array
     {
         if (!file_exists($filePath)) 
@@ -41,22 +40,6 @@ class NameParser
 
         fclose($handle);
         
-        return $people;
-    }
-
-
-    public function parseArray(array $nameStrings): array
-    {
-        $people = [];
-
-        foreach ($nameStrings as $nameString)
-        {
-            if (!empty($nameString))
-            {
-                $people = array_merge($people, $this->parse($nameString));
-            }
-        }
-
         return $people;
     }
 
@@ -87,7 +70,7 @@ class NameParser
         $this->titleConfig = $titleConfig;
     }
 
-     private function parseMultiplePeople(string $nameString, string $conjunction): array
+    private function parseMultiplePeople(string $nameString, string $conjunction): array
     {
         $parts = preg_split('/\s+(and|&|\+)\s+/i', $nameString);
         $people = [];
@@ -118,7 +101,6 @@ class NameParser
         
         return $people;
     }
-
 
     private function parseSinglePerson(string $nameString): Person
     {
