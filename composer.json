@@ -1,0 +1,16 @@
+{
+    "name": "misteryomi/name-parser",
+    "description": "A simple parser that converts generic names to stuctured array format",
+    "autoload": {
+        "psr-4": {
+            "Misteryomi\\NameParser\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Yomi Omotoso",
+            "email": "yomiomotoso@gmail.com"
+        }
+    ],
+    "require": {}
+}
