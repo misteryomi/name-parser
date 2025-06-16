@@ -1,6 +1,7 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
+
 use NameParser\NameParser;
 
 class NameParserTest extends TestCase
