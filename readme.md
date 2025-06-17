@@ -44,6 +44,20 @@ $customParsedPeople = $customParser->parseFromCSV(__DIR__ . '/example/example-da
 echo json_encode($customParsedPeople, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
 ```
 
+### Output Example
+
+Parsing the string `Mr J. Smith` would return:
+
+```json
+[
+  {
+    "title": "Mr",
+    "first_name": null,
+    "initial": "J",
+    "last_name": "Smith"
+  }
+]
+
 ## Testing
 
 Run tests with PHPUnit:
