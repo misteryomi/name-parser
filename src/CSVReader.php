@@ -1,6 +1,6 @@
 <?php
 
-namespace NameParser\Services;
+namespace NameParser;
 
 /**
  * Exception for CSV-related errors

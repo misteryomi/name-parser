@@ -10,17 +10,23 @@ $parsedPeople = $parser->parseFromCSV(__DIR__ . '/example-data.csv', true);
 
 echo json_encode($parsedPeople, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
 
+// Example output
+/*
+[
+    {
+        "title": "Mr",
+        "first_name": "John",
+        "initial": null,
+        "last_name": "Smith"
+    },
+    {
+        "title": "Mrs",
+        "first_name": "Jane",
+        "initial": null,
+        "last_name": "Doe"
+    }
+]
+*/
 
-// Using Custom Titles Configuration:
-
-// $customTitles = [
-//     'Dr' => 'Doctor',
-//     'Mr' => 'Mister',
-//     'Mrs' => 'Mistress',
-//     'Ms' => 'Miss',
-// ];
-// $customParser = new NameParser(new \NameParser\Config\TitleConfig($customTitles));
-
-// $customParsedPeople = $customParser->parseFromCSV(__DIR__ . '/example-data.csv', true);
-
-// echo json_encode($customParsedPeople, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+// Note: Ensure the example-data.csv file exists in the same directory with appropriate data.
+// The CSV should have a header row with 'title', 'first_name', 'initial', 'last_name' columns.

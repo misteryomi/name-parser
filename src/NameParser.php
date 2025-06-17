@@ -4,7 +4,7 @@ namespace NameParser;
 
 use NameParser\Data\Person;
 use NameParser\Config\TitleConfig;
-use NameParser\Services\CsvReader;
+use NameParser\CsvReader;
 
 /**
  * NameParser - Parses names from strings or CSV files into Person objects.
