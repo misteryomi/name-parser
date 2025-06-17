@@ -19,7 +19,7 @@ echo json_encode($parsedPeople, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSO
 //     'Mrs' => 'Mistress',
 //     'Ms' => 'Miss',
 // ];
-// $customParser = new NameParser(new \NameParser\Mappings\TitleConfig($customTitles));
+// $customParser = new NameParser(new \NameParser\Config\TitleConfig($customTitles));
 
 // $customParsedPeople = $customParser->parseFromCSV(__DIR__ . '/example-data.csv', true);
 

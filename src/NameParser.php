@@ -2,9 +2,16 @@
 
 namespace NameParser;
 
-use NameParser\DTO\Person;
-use NameParser\Mappings\TitleConfig;
+use NameParser\Data\Person;
+use NameParser\Config\TitleConfig;
+use NameParser\Services\CsvReader;
 
+/**
+ * NameParser - Parses names from strings or CSV files into Person objects.
+ *
+ * This class provides functionality to parse names from a string or a CSV file,
+ * handling titles, initials, and multiple people in a single string.
+ */
 class NameParser
 {
 
@@ -17,29 +24,23 @@ class NameParser
 
     public function parseFromCSV(string $filePath, bool $hasHeader = true): array
     {
-        if (!file_exists($filePath)) 
-        {
-            throw new \Exception("CSV file not found in: {$filePath}");
-        }
+        $csvReader = new CsvReader();
 
+        $nameStrings = $csvReader->readNames($filePath, $hasHeader);
+
+        return $this->parseArray($nameStrings);
+    }
+
+    public function parseArray(array $nameStrings): array
+    {
         $people = [];
-        $handle = fopen($filePath, 'r');
 
-        if ($hasHeader) 
-        {
-            fgetcsv($handle);
-        }
-
-        while (($data = fgetcsv($handle)) !== false) 
-        {
-            if (!empty($data[0]))
-            {
-                $people = array_merge($people, $this->parse($data[0]));
+        foreach ($nameStrings as $nameString) {
+            if (!empty($nameString)) {
+                $people = array_merge($people, $this->parse($nameString));
             }
         }
 
-        fclose($handle);
-        
         return $people;
     }
 
@@ -52,9 +53,9 @@ class NameParser
             return [];
         }
 
-        if (preg_match('/\s+(and|&|\+)\s+/i', $nameString, $matches, PREG_OFFSET_CAPTURE))
+        if (preg_match($this->getParseFormat(), $nameString, $matches, PREG_OFFSET_CAPTURE))
         {
-            return $this->parseMultiplePeople($nameString, $matches[0][0]);
+            return $this->parseMultiplePeople($nameString);
         }
 
         return [$this->parseSinglePerson($nameString)];
@@ -70,9 +71,9 @@ class NameParser
         $this->titleConfig = $titleConfig;
     }
 
-    private function parseMultiplePeople(string $nameString, string $conjunction): array
+    private function parseMultiplePeople(string $nameString): array
     {
-        $parts = preg_split('/\s+(and|&|\+)\s+/i', $nameString);
+        $parts = preg_split($this->getParseFormat(), $nameString);
         $people = [];
         
         $firstPart = trim($parts[0]);
@@ -110,7 +111,7 @@ class NameParser
 
         $index = 0;
 
-        // Extract ther person's title
+        // Extract the person's title
         if (isset($words[$index]) && $this->titleConfig->isValidTitle($words[$index]))
         {
             $person->title = $this->titleConfig->normalizeTitle($words[$index]);
@@ -152,5 +153,10 @@ class NameParser
     private function isInitial(string $word): bool
     {
         return preg_match('/^[A-Za-z].?$/', $word);
+    }
+
+    private function getParseFormat() 
+    {
+        return '/\s+(and|&|\+)\s+/i';
     }
 }

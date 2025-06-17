@@ -38,7 +38,7 @@ $customTitles = [
     'Mrs' => 'Mistress',
     'Ms' => 'Miss',
 ];
-$customParser = new NameParser(new \NameParser\Mappings\TitleConfig($customTitles));
+$customParser = new NameParser(new \NameParser\Config\TitleConfig($customTitles));
 $customParsedPeople = $customParser->parseFromCSV(__DIR__ . '/example/example-data.csv', true);
 
 echo json_encode($customParsedPeople, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);

@@ -1,7 +1,14 @@
 <?php
 
-namespace NameParser\Mappings;
+namespace NameParser\Config;
 
+/**
+ * TitleConfig - Configuration class for handling titles in name parsing.
+ *
+ * This class allows you to define valid titles and their mappings for normalization.
+ * It provides methods to check if a title is valid and to normalize titles based on
+ * the defined mappings.
+ */
 class TitleConfig
 {
     /**
@@ -19,16 +26,6 @@ class TitleConfig
     ) {
         $this->validTitles = $validTitles ?? $this->getDefaultTitles();
         $this->titleMappings = $titleMappings ?? $this->getDefaultMappings();
-    }
-
-    public static function withValidTitles(array $titles): self
-    {
-        return new self($titles);
-    }
-
-    public static function withMappings(array $mappings): self
-    {
-        return new self(null, $mappings);
     }
 
     public static function custom(array $validTitles, array $titleMappings): self
@@ -53,20 +50,10 @@ class TitleConfig
         return ucfirst($cleaned);
     }
 
-    public function getValidTitles(): array
-    {
-        return $this->validTitles;
-    }
-
-    public function getTitleMappings(): array
-    {
-        return $this->titleMappings;
-    }
-
     private function getDefaultTitles(): array
     {
         return [
-            'mr', 'mrs', 'ms', 'miss', 'dr', 'prof', 'professor',
+            'mr', 'mrs', 'ms', 'miss', 'dr', 'prof',
             'mister'
         ];
     }
@@ -75,9 +62,6 @@ class TitleConfig
     {
         return [
             'mister' => 'Mr',
-            'professor' => 'Prof',
-            'reverend' => 'Rev',
-            'honourable' => 'Hon'
         ];
     }
 }
